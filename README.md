@@ -31,7 +31,7 @@ Camouflaged Object Detection (COD) and Camouflage Effectiveness Assessment (CEA)
 
 在训练及测试前，将数据集进行处理如下： 
 数据文件夹结构如下：  
-![alt text](image-1.png)  
+![alt text](dataset.png)  
 其中，所有训练集图片全部整合进TrainDataset-Imgs文件夹，GT为真值图，EDGE为伪装目标边缘图像；EDGE，GT中图像名称与Imgs中文件名称一一对应，但文件后缀不同，训练及测试中对文件对应的相关处理可参考utils--dataloader.py、dataloader_edge.py。
 
 ## 依赖包
