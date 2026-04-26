@@ -1,4 +1,4 @@
-<img width="432" height="13" alt="image" src="https://github.com/user-attachments/assets/95520254-f17e-4097-b679-cc043931d424" /># UADNet:a unified assessment and detection network
+ /># UADNet:a unified assessment and detection network
 <!--
  * @Author: Bai Xueqiong
  * @Date: 2026-04-20 16:29:26
