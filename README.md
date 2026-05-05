@@ -13,6 +13,7 @@
 | train     | 1000        | 3040        |  0            |4040 |
 | test      | 250         | 2026        | 4121          |6397 |
 | sum       | 1250        | 5056        | 4121          |10137|
+MC1K Dataset will be made available on request.<img width="432" height="23" alt="image" src="https://github.com/user-attachments/assets/dd7f9f73-5074-486d-99a2-21c5f99e845d" />
 
 在训练及测试前，将数据集进行处理如下： 
 数据文件夹结构如下：  
