@@ -1,60 +1,68 @@
 <!--
- * @Author: 丁铖,白雪琼
+ * @Author: Ding Cheng, Bai Xueqiong
  * @Date: 2026-04-20 16:29:26
  * @Description: 
  * 
- * Copyright (c) 2026 by 丁铖,白雪琼, All Rights Reserved. 
+ * Copyright (c) 2026 by Ding Cheng, Bai Xueqiong, All Rights Reserved. 
 -->
-# UAD-Net文件说明
-## 数据集
-使用CAMO，COD10K，NC4K三个数据集进行训练和测试，相关设置如下：
-| Datasets  | CAMO        | COD10K      | NC4K          | sum |
-| :---      | :----:      |    :----:   |          ---: |---: |
-| train     | 1000        | 3040        |  0            |4040 |
-| test      | 250         | 2026        | 4121          |6397 |
-| sum       | 1250        | 5056        | 4121          |10137|
-MC1K Dataset will be made available on request.<img width="432" height="23" alt="image" src="https://github.com/user-attachments/assets/dd7f9f73-5074-486d-99a2-21c5f99e845d" />
 
-在训练及测试前，将数据集进行处理如下： 
-数据文件夹结构如下：  
-![alt text](image-1.png)  
-其中，所有训练集图片全部整合进TrainDataset-Imgs文件夹，GT为真值图，EDGE为伪装目标边缘图像；EDGE，GT中图像名称与Imgs中文件名称一一对应，但文件后缀不同，训练及测试中对文件对应的相关处理可参考utils--dataloader.py、dataloader_edge.py。
+# UAD-Net File Description
 
-## 依赖包
-见 requirements.txt
+## Datasets
 
-## 运行程序
+Three datasets — CAMO, COD10K, and NC4K — are used for training and testing. The detailed configuration is as follows:
 
-1. 环境配置:
-    
-    + 创建Pytorch环境：具体过程略
-    
-    + 安装依赖包: 程序依赖包见`requirements.txt`.
+| Datasets  | CAMO        | COD10K      | NC4K          | Sum  |
+| :---      | :----:      |    :----:   |          ---: |---:  |
+| Train     | 1000        | 3040        | 0             | 4040 |
+| Test      | 250         | 2026        | 4121          | 6397 |
+| Sum       | 1250        | 5056        | 4121          | 10137|
 
-2. 下载数据集:
+MC1K Dataset will be made available on request. <img width="432" height="23" alt="image" src="https://github.com/user-attachments/assets/dd7f9f73-5074-486d-99a2-21c5f99e845d" />
 
-    + 测试集地址： [download link (Google Drive)](https://drive.google.com/file/d/1SLRB5Wg1Hdy7CQ74s3mTQ3ChhjFRSFdZ/view?usp=sharing).
-    
-    + 训练集地址： [download link (Google Drive)](https://drive.google.com/file/d/1Kifp7I0n9dlWKXXNIbN7kgyokoRY4Yz7/view?usp=sharing).
-    
-    + 模型参数，可用于推理，评估。位于： `./checkpoints\Net_epoch_best_22.pth`, 
-    
+Before training and testing, the datasets are organized as follows:
 
-3. 训练设置:
+The data folder structure is shown below:  
+![alt text](image-1.png)
 
-    + 请修改`MyTrain.py`中的相关参数， `--train_save` and `--train_path` in `MyTrain.py`.
-  
+All training images are consolidated into the `TrainDataset-Imgs` folder. `GT` contains ground truth maps, and `EDGE` contains edge maps of camouflaged objects. The filenames in `EDGE` and `GT` correspond one-to-one with those in `Imgs`, but with different file extensions. For details on how file correspondence is handled during training and testing, please refer to `utils/dataloader.py` and `dataloader_edge.py`.
 
-4. Testing Configuration:
+## Dependencies
 
-    + After you download all the pre-trained model and testing dataset, just run `MyTest.py` to generate the final prediction map: 
-    replace your trained model directory (`--pth_path`).
+See `requirements.txt`.
 
-## 评估模型
-1. 评估步骤
-   + 首先通过测试代码，生成待评估的图像
-   + 修改评估程序中相关参数，并运行评估程序  
-2. 评估程序地址
-   + 可以选择使用MATLAB代码进行评估(revised from [link](https://github.com/DengPingFan/CODToolbox)), .
-   + 如使用python进行评估，需要安装相应库[link](https://github.com/lartpang/PySODMetrics) by `pip install pysodmetrics`.
-   作者根据需要，也以相关库为基础，修改了Python代码，见 `./metrics/eval.py` 运行后自动将评估结果输出到xlx文件中
+## Running the Program
+
+1. **Environment Setup:**
+
+   - Create a PyTorch environment *(details omitted)*.
+   - Install dependencies: `pip install -r requirements.txt`.
+
+2. **Download Datasets:**
+
+   - Test set: [Download link (Google Drive)](https://drive.google.com/file/d/1SLRB5Wg1Hdy7CQ74s3mTQ3ChhjFRSFdZ/view?usp=sharing)
+   - Train set: [Download link (Google Drive)](https://drive.google.com/file/d/1Kifp7I0n9dlWKXXNIbN7kgyokoRY4Yz7/view?usp=sharing)
+   - Pre-trained model weights (for inference and evaluation): `./checkpoints/Net_epoch_best_22.pth`
+
+3. **Training Configuration:**
+
+   - Modify the relevant parameters in `MyTrain.py`, including `--train_save` and `--train_path`.
+
+4. **Testing Configuration:**
+
+   - After downloading all pre-trained model weights and the testing dataset, run `MyTest.py` to generate the final prediction maps. Replace the trained model directory with `--pth_path`.
+
+## Model Evaluation
+
+1. **Evaluation Steps:**
+   - First, run the testing script to generate the prediction images to be evaluated.
+   - Modify the relevant parameters in the evaluation script and run it.
+
+2. **Evaluation Tools:**
+   - You may use the **MATLAB** evaluation code (revised from [this repository](https://github.com/DengPingFan/CODToolbox)).
+   - For **Python**-based evaluation, install the required library via:
+     ```
+     pip install pysodmetrics
+     ```
+     Reference: [PySODMetrics](https://github.com/lartpang/PySODMetrics)
+   - The authors have also modified the Python evaluation code based on this library. See `./metrics/eval.py`. Upon execution, the evaluation results are automatically exported to an `.xlsx` file.
